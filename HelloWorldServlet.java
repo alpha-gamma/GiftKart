@@ -26,7 +26,7 @@ public class HelloWorldServlet extends HttpServlet {
     	 Properties props = new Properties();
          Session session = Session.getDefaultInstance(props, null);
   
-         String msgBody = "YO YO YOOYOYOYYOYO";
+         String msgBody = "Test mail!";
   
          try {
              Message msg = new MimeMessage(session);
