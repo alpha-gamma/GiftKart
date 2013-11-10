@@ -89,20 +89,17 @@
 			        	$('#email').append(response.email);
 
 			        });
-			        for(var i=0;i<1000;i+=20)
-			        {
-			        	FB.api('/me/likes?limit=20&offset='+i, function(response) {
-				      	  $.each(response.data, function() {
-				      	  	$('.likes').append("<li>" + this.name + "</li>");
-				      	  });
-							var url = response.paging.next;
-							console.log(url.replace("https://graph.facebook.com",""));			          
-				          // document.getElementById("info").innerHTML=str;
-				          if(fromGetPerm){
-					          makeForm(response.id);
-				          }
-			    	});
-			        }
+			        
+		        	FB.api('/me/likes?limit=2000', function(response) {
+			      	  $.each(response.data, function() {
+			      	  	$('.likes').append("<li>" + this.name + "</li>");
+			      	  });
+			          // document.getElementById("info").innerHTML=str;
+			          if(fromGetPerm){
+				          makeForm(response.id);
+			          }
+		    		});
+			  
 
 			    	FB.api('/me/interests?limit=20', function(response) {
 				      	  $.each(response.data, function() {
