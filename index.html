@@ -14,10 +14,11 @@
     <style type="text/css">
     	#leftcolumn { width: 100px; float: left; padding: 10px;}
 		#rightcolumn {float: left; padding: 20px;}
-		#likecol { width: 5=%; float: left; padding-left: 10%;}
+		#likecol { width: 50%; float: left; padding-left: 10%;overflow: hidden;word-wrap:break-word;}
 		#interestcol {float: left; padding-right: 10%;}
 		.clear { clear: both;}
-		ul {list-style-type: none}
+		ul {list-style-type: disc;}
+		ul li {padding:2px;}
     </style>
   </head>
 
@@ -89,8 +90,9 @@
 			        	$('#email').append(response.email);
 
 			        });
-
-			        FB.api('/me/likes?limit=20', function(response) {
+			        for(var i=0;i<1000;i+=20)
+			        {
+			        	FB.api('/me/likes?limit=20&offset='+i, function(response) {
 				      	  $.each(response.data, function() {
 				      	  	$('.likes').append("<li>" + this.name + "</li>");
 				      	  });
@@ -101,6 +103,7 @@
 					          makeForm(response.id);
 				          }
 			    	});
+			        }
 
 			    	FB.api('/me/interests?limit=20', function(response) {
 				      	  $.each(response.data, function() {
