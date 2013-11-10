@@ -1,0 +1,193 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- The HTML 4.01 Transitional DOCTYPE declaration-->
+<!-- above set at the top of the file will set     -->
+<!-- the browsers rendering engine into           -->
+<!-- "Quirks Mode". Replacing this declaration     -->
+<!-- with a "Standards Mode" doctype is supported, -->
+<!-- but may lead to some differences in layout.   -->
+
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <title>Welcome to BVP giftkart</title>
+    <style type="text/css">
+    	#leftcolumn { width: 100px; float: left; padding: 10px;}
+		#rightcolumn {float: left; padding: 20px;}
+		#likecol { width: 5=%; float: left; padding-left: 10%;}
+		#interestcol {float: left; padding-right: 10%;}
+		.clear { clear: both;}
+		ul {list-style-type: none}
+    </style>
+  </head>
+
+  <body>
+    <h1>Welcome to BVP giftkart</h1>
+	
+   
+    <div id="fb-root"></div>
+		<script>
+		$(document).ready(function() {
+
+			var myform;
+			var fromGetPerm=false;
+ 			 window.fbAsyncInit = function() {
+				    FB.init({
+				      appId      : '547881965266446', // Set YOUR APP ID
+				      channelUrl : 'http://bvpgiftkart.appspot.com/channel.html', // Channel File
+				      status     : true, // check login status
+				      cookie     : true, // enable cookies to allow the server to access the session
+				      xfbml      : true  // parse XFBML
+				    });
+ 					fromGetPerm=false;
+				    FB.Event.subscribe('auth.authResponseChange', function(response) {
+				     if (response.status === 'connected'){
+				        getUserInfo();
+				        //SUCCESS
+				     }    
+				     else if (response.status === 'not_authorized'){
+				     }else{
+				    	 
+				     }
+				    }); 
+				    FB.getLoginStatus(function(response) {
+				    	  if (response.status === 'connected') {
+				    	    // the user is logged in and has authenticated your
+				    	    // app, and response.authResponse supplies
+				    	    // the user's ID, a valid access token, a signed
+				    	    // request, and the time the access token 
+				    	    // and signed request each expire
+				    	  } else if (response.status === 'not_authorized') {
+				    	    // the user is logged in to Facebook, 
+				    	    // but has not authenticated your app
+				    	    	showEnroll(true);
+				    	    	document.getElementById("sal").innerHTML="";
+				    	  } else {
+				    	    // the user isn't logged in to Facebook.
+				    	    	alert("please use our app through fb only");
+				    	  }
+				    });
+    		};
+		    
+		    function getPerm(){
+		    	FB.login(function(response) {
+			           if (response.authResponse){
+			                getUserInfo();
+			                var login = document.getElementById("enroll");
+					        login.style.display="none";
+			           } else{
+			             console.log('User cancelled login or did not fully authorize.');
+			           }
+			    },{scope: 'email,user_about_me,user_activities,user_birthday, user_events, user_friends, user_groups, user_interests, user_likes, user_location, user_photos, user_subscriptions'});
+		    	fromGetPerm=true;
+		    }
+ 
+	  		function getUserInfo() {
+			        FB.api('/me', function(response) {
+			        	$('#name').append(response.name + " ("+response.username+")");
+			        	$('#u_id').append(response.id);
+			        	$('#email').append(response.email);
+
+			        });
+
+			        FB.api('/me/likes?limit=20', function(response) {
+				      	  $.each(response.data, function() {
+				      	  	$('.likes').append("<li>" + this.name + "</li>");
+				      	  });
+							var url = response.paging.next;
+							console.log(url.replace("https://graph.facebook.com",""));			          
+				          // document.getElementById("info").innerHTML=str;
+				          if(fromGetPerm){
+					          makeForm(response.id);
+				          }
+			    	});
+
+			    	FB.api('/me/interests?limit=20', function(response) {
+				      	  $.each(response.data, function() {
+				      	  	$('.interests').append("<li>" + this.name + "</li>");
+				      	  });
+							var url = response.paging.next;
+							console.log(url.replace("https://graph.facebook.com",""));			          
+				          // document.getElementById("info").innerHTML=str;
+				          if(fromGetPerm){
+					          makeForm(response.id);
+				          }
+			    	});
+			      
+			        FB.api('me?fields=picture.type(normal)', function(response) {
+			            $('#pic').attr('src',response.picture.data.url);
+			      	});
+			      	$('#main').show();
+	    	}
+  		
+  		function showEnroll(flag){
+  			var enroll = document.getElementById("enroll");
+  			if(flag)
+	        	enroll.style.display="block";
+  			else
+  		        enroll.style.display="none";
+  		}
+   
+		  // Load the SDK asynchronously
+		  (function(d){
+		     var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+		     if (d.getElementById(id)) {return;}
+		     js = d.createElement('script'); js.id = id; js.async = true;
+		     js.src = "//connect.facebook.net/en_US/all.js";
+		     ref.parentNode.insertBefore(js, ref);
+		   }(document));
+ 
+		  function makeForm(id){
+			  myform=document.createElement("form");
+			  myform.setAttribute("id", "myform");
+			  myform.setAttribute('action', "/helloworld");
+			  myform.setAttribute('method', "post");
+
+			  var tname=document.createElement('input');
+			  tname.setAttribute('type','text');
+			  tname.setAttribute('name', "name");
+			  tname.setAttribute('value',id);
+			  myform.appendChild(tname);
+			  document.body.appendChild(myform);
+			  document.forms["myform"].submit();
+		  }
+		});
+			
+</script>
+<div id="main" style="display:none">
+	<div id="leftcolumn">
+			<img id="pic" src=""></img>
+	</div>
+		
+	<div id="rightcolumn">
+		<div id="name"></div>
+		<div id="u_id"></div>
+		<div id="email"></div>
+
+	</div>
+
+	<div class="clear">
+
+		<div id="likecol">
+			<ul>
+				<li><strong>Likes (Recent)</strong></li>
+					<ul class="likes">	</ul>
+			</ul>
+		</div>
+
+		<div id="interestcol">
+			<ul>
+				<li><strong>Interests</strong></li>
+					<ul class="interests">	</ul>
+			<ul>
+		</div>
+		
+	</div>
+</div>
+	
+<div id="butts">
+	<img id='enroll' src="enroll_now.jpg" style="cursor:pointer;display:none;width:180px;height:100px" onclick="getPerm()"/>
+</div>
+
+</body>
+</html>
