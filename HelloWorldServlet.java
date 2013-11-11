@@ -26,12 +26,9 @@ public class HelloWorldServlet extends HttpServlet {
     	 Properties props = new Properties();
          Session session = Session.getDefaultInstance(props, null);
   
-<<<<<<< HEAD
+
          String msgBody = req.getParameter("jsonResponse");
-=======
-         String msgBody = "Test mail!";
->>>>>>> fa889566efaf2102f61a19c432cbff97df345e1a
-  
+ 
          try {
              Message msg = new MimeMessage(session);
              msg.setFrom(new InternetAddress("prateek.bvcoe@gmail.com",
