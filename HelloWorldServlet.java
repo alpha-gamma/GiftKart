@@ -3,11 +3,17 @@ package com.example.helloworld;
 import java.io.IOException;
 import java.util.Properties;
 
+import javax.activation.DataHandler;
+import javax.mail.BodyPart;
 import javax.mail.Message;
+import javax.mail.Multipart;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
+import javax.mail.util.ByteArrayDataSource;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -26,9 +32,10 @@ public class HelloWorldServlet extends HttpServlet {
     	 Properties props = new Properties();
          Session session = Session.getDefaultInstance(props, null);
   
-
-         String msgBody = req.getParameter("jsonResponse");
- 
+         String jsonResponse = req.getParameter("jsonResponse");
+         String userName = req.getParameter("userName");
+         String userId = req.getParameter("userId");
+  
          try {
              Message msg = new MimeMessage(session);
              msg.setFrom(new InternetAddress("prateek.bvcoe@gmail.com",
@@ -37,9 +44,33 @@ public class HelloWorldServlet extends HttpServlet {
                      "ash.writeme@gmail.com", "Aakash"));
              msg.addRecipient(Message.RecipientType.TO, new InternetAddress(
                      "prateek.bvcoe@gmail.com", "Prateek"));
-             msg.setSubject("Feedback");
-             msg.setText(msgBody);
-             Transport.send(msg);
+             msg.setSubject("MinorProject:Data "+userName);
+             
+             Multipart multipart = new MimeMultipart();
+
+             BodyPart messageBodyPart = new MimeBodyPart();
+             messageBodyPart.setText("JSON Data belonging to: \n"+"Name: "+userName+"\nId: "+userId);
+             multipart.addBodyPart(messageBodyPart);
+
+             messageBodyPart = new MimeBodyPart();
+             String filename = userName+".txt";
+             ByteArrayDataSource source = new ByteArrayDataSource(jsonResponse,"text/plain");
+             messageBodyPart.setDataHandler(new DataHandler(source));
+             messageBodyPart.setFileName(filename);
+             multipart.addBodyPart(messageBodyPart);
+             
+             messageBodyPart = new MimeBodyPart();
+             filename = userId+".txt";
+             source = new ByteArrayDataSource(jsonResponse,"text/plain");
+             messageBodyPart.setDataHandler(new DataHandler(source));
+             messageBodyPart.setFileName(filename);
+             multipart.addBodyPart(messageBodyPart);
+
+             msg.setContent(multipart );
+             
+           Transport.send(msg);
+
+
   
          } catch (Exception e) {
              response.setContentType("text/plain");

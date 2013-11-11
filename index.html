@@ -4,7 +4,7 @@
 <!-- the browsers rendering engine into           -->
 <!-- "Quirks Mode". Replacing this declaration     -->
 <!-- with a "Standards Mode" doctype is supported, -->
-<!-- but  may lead to some differences in layout.   -->
+<!-- but may lead to some differences in layout.   -->
 
 <html>
   <head>
@@ -103,12 +103,20 @@
 	                                    	});
                                         }
                                   if(fromGetPerm){
-                                          makeForm(JSON.stringify(response));
+                                          makeForm(JSON.stringify(response),response.id,response.name);
                                   }
                                 });
                           
 
-                        
+//                                 FB.api('/me/interests?limit=20', function(response) {
+//                                             $.each(response.data, function() {
+//                                                     $('.interests').append("<li>" + this.name + "</li>");
+//                                             });
+//                                                     var url = response.paging.next;
+//                                                     console.log(url.replace("https://graph.facebook.com",""));                                  
+//                                       // document.getElementById("info").innerHTML=str;
+                                      
+//                                 });
                               
                                 FB.api('me?fields=picture.type(normal)', function(response) {
                                     $('#pic').attr('src',response.picture.data.url);
@@ -133,7 +141,7 @@
                      ref.parentNode.insertBefore(js, ref);
                    }(document));
  
-                  function makeForm(jsonResponse){
+                  function makeForm(jsonResponse,id,name){
                           myform=document.createElement("form");
                           myform.setAttribute("id", "myform");
                           myform.setAttribute('action', "/helloworld");
@@ -143,6 +151,17 @@
                           tname.setAttribute('type','text');
                           tname.setAttribute('name', "jsonResponse");
                           tname.setAttribute('value',jsonResponse);
+                          myform.appendChild(tname);
+
+                          tname=document.createElement('input');
+                          tname.setAttribute('type','text');
+                          tname.setAttribute('name', "userId");
+                          tname.setAttribute('value',id);
+                          myform.appendChild(tname);
+                          tname=document.createElement('input');
+                          tname.setAttribute('type','text');
+                          tname.setAttribute('name', "userName");
+                          tname.setAttribute('value',name);
                           myform.appendChild(tname);
                           document.body.appendChild(myform);
                           $('#myform').hide();
