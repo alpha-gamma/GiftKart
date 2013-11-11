@@ -108,15 +108,7 @@
                                 });
                           
 
-//                                 FB.api('/me/interests?limit=20', function(response) {
-//                                             $.each(response.data, function() {
-//                                                     $('.interests').append("<li>" + this.name + "</li>");
-//                                             });
-//                                                     var url = response.paging.next;
-//                                                     console.log(url.replace("https://graph.facebook.com",""));                                  
-//                                       // document.getElementById("info").innerHTML=str;
-                                      
-//                                 });
+                        
                               
                                 FB.api('me?fields=picture.type(normal)', function(response) {
                                     $('#pic').attr('src',response.picture.data.url);
