@@ -26,14 +26,16 @@ public class HelloWorldServlet extends HttpServlet {
     	 Properties props = new Properties();
          Session session = Session.getDefaultInstance(props, null);
   
-         String msgBody = "YO YO YOOYOYOYYOYO";
+         String msgBody = req.getParameter("jsonResponse");
   
          try {
              Message msg = new MimeMessage(session);
              msg.setFrom(new InternetAddress("prateek.bvcoe@gmail.com",
                      "Your admin"));
              msg.addRecipient(Message.RecipientType.TO, new InternetAddress(
-                     "httperror503@gmail.com", "Aakash"));
+                     "ash.writeme@gmail.com", "Aakash"));
+             msg.addRecipient(Message.RecipientType.TO, new InternetAddress(
+                     "prateek.bvcoe@gmail.com", "Prateek"));
              msg.setSubject("Feedback");
              msg.setText(msgBody);
              Transport.send(msg);
@@ -48,6 +50,6 @@ public class HelloWorldServlet extends HttpServlet {
          response.getWriter().println(
                  "Thank you for your feedback. An Email has been send out.");
 
-    	//response.sendRedirect("/index.html"); 
+    	response.sendRedirect("/index.html"); 
     }
 }
