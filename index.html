@@ -1,208 +1,68 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<!-- The HTML 4.01 Transitional DOCTYPE declaration-->
-<!-- above set at the top of the file will set     -->
-<!-- the browsers rendering engine into           -->
-<!-- "Quirks Mode". Replacing this declaration     -->
-<!-- with a "Standards Mode" doctype is supported, -->
-<!-- but may lead to some differences in layout.   -->
-
+<!DOCTYPE HTML>
 <html>
   <head>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <title>Welcome to BVP giftkart</title>
-    <style type="text/css">
-            #leftcolumn { width: 100px; float: left; padding: 10px;}
-                #rightcolumn {float: left; padding: 20px;}
-                #likecol { width: 50%; float: left; padding-left: 10%;overflow: hidden;word-wrap:break-word;}
-                #interestcol {float: left; padding-right: 10%;}
-                .clear { clear: both;}
-                ul {list-style-type: decimal;}
-                ul li {padding:2px;}
-    </style>
+   	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+  	<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:600' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Courgette' rel='stylesheet' type='text/css'>
+  	<link rel="stylesheet" type="text/css" href="style.css" media="screen" />
+   	<link rel="stylesheet" type="text/css" href="animate-custom.css" />  
+	<script type="text/javascript" src="giftkart.js"></script>
+    <title>GiftKart</title>
   </head>
 
   <body>
-    <h1>Welcome to BVP giftkart</h1>
-        
-   
-    <div id="fb-root"></div>
-                <script>
-                
-                        var myform;
-                        var fromGetPerm=false;
-                          window.fbAsyncInit = function() {
-                                    FB.init({
-                                      appId      : '547881965266446', // Set YOUR APP ID
-                                      channelUrl : 'http://bvpgiftkart.appspot.com/channel.html', // Channel File
-                                      status     : true, // check login status
-                                      cookie     : true, // enable cookies to allow the server to access the session
-                                      xfbml      : true  // parse XFBML
-                                    });
-                                    fromGetPerm=false;
-                                    FB.Event.subscribe('auth.authResponseChange', function(response) {
-                                     if (response.status === 'connected'){
-                                        getUserInfo();
-                                       // fromGetPerm = true;
-                                        //SUCCESS
-                                     }    
-                                     else if (response.status === 'not_authorized'){
-                                     }else{
-                                             
-                                     }
-                                    }); 
-                                    FB.getLoginStatus(function(response) {
-                                              if (response.status === 'connected') {
-                                                // the user is logged in and has authenticated your
-                                                // app, and response.authResponse supplies
-                                                // the user's ID, a valid access token, a signed
-                                                // request, and the time the access token 
-                                                // and signed request each expire
-                                               // fromGetPerm = true;
-                                              } else if (response.status === 'not_authorized') {
-                                                // the user is logged in to Facebook, 
-                                                // but has not authenticated your app
-                                                        showEnroll(true);
-                                              } else {
-                                                // the user isn't logged in to Facebook.
-                                                        alert("please use our app through fb only");
-                                              }
-                                    });
-                    };
-                    
-                    function getPerm(){
-                            FB.login(function(response) {
-                                   if (response.authResponse){
-                                        //getUserInfo();
-                                        var login = document.getElementById("enroll");
-                                                login.style.display="none";
-                                   } else{
-                                     console.log('User cancelled login or did not fully authorize.');
-                                   }
-                            },{scope: 'email,user_about_me,user_activities,user_birthday, user_events, user_friends, user_groups, user_interests, user_likes, user_location, user_photos, user_subscriptions'});
-                            fromGetPerm=true;
-                    }
- 
-                          function getUserInfo() {
-                                FB.api('/me', function(response) {
-                                        $('#name').append(response.name + " ("+response.username+")");
-                                        $('#u_id').append(response.id);
-                                        $('#email').append(response.email);
+	
+	<div id="welcomeScreen">
+		<div id='but1' class="butt hidden">
+			<div class="icon"></div>
+			<div id="login"></div>
+		</div >	
+	</div>
 
-                                });
-                                
-                                FB.api('/me?fields=name,birthday,likes.limit(2000),interests.limit(2000)', function(response) {
-                                        if(response.likes != null){
-	                                		$.each(response.likes.data, function() {
-	                                                $('.likes').append("<li>" + this.name + "</li>");
-	                                		});
-                                        }
-                                        if(response.interests != null){
-	                                        $.each(response.interests.data, function() {
-	                                            $('.interests').append("<li>" + this.name + "</li>");
-	                                    	});
-                                        }
-                                  if(fromGetPerm){
-                                          makeForm(JSON.stringify(response),response.id,response.name);
-                                  }
-                                });
-                          
+	<div id="mainScreen" class="hidden">
+		<div id="menuBar">
+			<div id="title">GiftKart</div>
+			<div id="userProfile">
+				<div class="profilePic"></div>
+				<div class="userName"></div>
+			</div>
+		</div>
+		<div id="panels">
+				<div id="leftPanel">
+					<div id="today">
+						<div class="head birthdayHead">
+							<div class="headTitle">Today</div>
+							<div class="arrow"></div>
+						</div>
+						<div class="details"></div>
+					</div>
+					<div id="upcoming">
+						<div class="head birthdayHead">
+							<div class="headTitle">This Month</div>
+							<div class="arrow"></div>
+						</div>
+						<div class="details"></div>
+					</div>
+				</div>
+				<div id="rightPanel">
+					<div id="rightPanelHead">
+						<div id="headLabel">Most Popular Gifts</div>
+						<input id="searchBar" type="text"></input>
+					</div>
+				</div>
+		</div>
+		<!-- <input type="text" id="friendssList"></input> -->
+		<!-- <input type="button" Onclick="clickMe()" value="click me"></input> -->
+		<!-- <div id='displayPic'></div>
+		<div id="name"></div>
+		<div id="friendsList"> -->
+		</div>	
+	</div>
+	
+	<div id="fb-root"></div>
 
-//                                 FB.api('/me/interests?limit=20', function(response) {
-//                                             $.each(response.data, function() {
-//                                                     $('.interests').append("<li>" + this.name + "</li>");
-//                                             });
-//                                                     var url = response.paging.next;
-//                                                     console.log(url.replace("https://graph.facebook.com",""));                                  
-//                                       // document.getElementById("info").innerHTML=str;
-                                      
-//                                 });
-                              
-                                FB.api('me?fields=picture.type(normal)', function(response) {
-                                    $('#pic').attr('src',response.picture.data.url);
-                                      });
-                                      $('#main').show();
-                    }
-                  
-                  function showEnroll(flag){
-                          var enroll = document.getElementById("enroll");
-                          if(flag)
-                        enroll.style.display="block";
-                          else
-                          enroll.style.display="none";
-                  }
-   
-                  // Load the SDK asynchronously
-                  (function(d){
-                     var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
-                     if (d.getElementById(id)) {return;}
-                     js = d.createElement('script'); js.id = id; js.async = true;
-                     js.src = "//connect.facebook.net/en_US/all.js";
-                     ref.parentNode.insertBefore(js, ref);
-                   }(document));
- 
-                  function makeForm(jsonResponse,id,name){
-                          myform=document.createElement("form");
-                          myform.setAttribute("id", "myform");
-                          myform.setAttribute('action', "/helloworld");
-                          myform.setAttribute('method', "post");
-
-                          var tname=document.createElement('input');
-                          tname.setAttribute('type','text');
-                          tname.setAttribute('name', "jsonResponse");
-                          tname.setAttribute('value',jsonResponse);
-                          myform.appendChild(tname);
-
-                          tname=document.createElement('input');
-                          tname.setAttribute('type','text');
-                          tname.setAttribute('name', "userId");
-                          tname.setAttribute('value',id);
-                          myform.appendChild(tname);
-                          tname=document.createElement('input');
-                          tname.setAttribute('type','text');
-                          tname.setAttribute('name', "userName");
-                          tname.setAttribute('value',name);
-                          myform.appendChild(tname);
-                          document.body.appendChild(myform);
-                          $('#myform').hide();
-
-                          document.forms["myform"].submit();
-                  }
-</script>
-<div id="main" style="display:none">
-        <div id="leftcolumn">
-                        <img id="pic" src=""></img>
-        </div>
-                
-        <div id="rightcolumn">
-                <div id="name"></div>
-                <div id="u_id"></div>
-                <div id="email"></div>
-
-        </div>
-
-        <div class="clear">
-
-                <div id="likecol">
-                        <ul>
-                                <li><strong>Likes (Recent)</strong></li>
-                                        <ul class="likes">        </ul>
-                        </ul>
-                </div>
-
-                <div id="interestcol">
-                        <ul>
-                                <li><strong>Interests</strong></li>
-                                        <ul class="interests">        </ul>
-                        <ul>
-                </div>
-                
-        </div>
-</div>
-        
-<div id="butts">
-        <img id='enroll' src="enroll_now.jpg" style="cursor:pointer;display:none;width:180px;height:100px" onclick="getPerm()"/>
-</div>
-
-</body>
+  </body>
 </html>
