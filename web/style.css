@@ -1,0 +1,449 @@
+* {
+	clear:all;
+}
+
+#mainScreen {
+	margin:auto;
+	width:960px;
+	height:600px;
+	background: url('mainScreen.jpg');
+	/*padding-top: 10px;*/
+	overflow: hidden;
+}
+
+#menuBar {
+	width: 100%;
+	height: 60px;
+	background: #394264;
+	overflow: hidden;
+}
+
+#title {
+	font-family: 'Courgette', cursive;
+	font-size: 40px;
+	font-weight: bold;
+	float: left;
+	color: #fff;
+	height: 100%;
+	margin-top: 5px;
+	margin-left: 20px;
+}
+
+#userProfile {
+	float: right;
+	height:50px;
+}
+#userProfile .userName:hover {
+	background: #50597b;
+}
+#userProfile .profilePic {
+	float: right;
+	border-radius: 999px;
+	width: 50px;
+	height: 50px;
+	margin-right: 10px;
+	margin-top: 5px;
+}
+
+#userProfile .userName {
+	font-family: 'Open Sans', sans-serif;
+	font-size: 14px;
+	float: right;
+	color: #fff;
+	margin-right: 10px;
+	line-height: 40px;
+	padding:10px;
+	height: 100%;
+	cursor: pointer;
+}
+
+h1 {
+	padding:10px;
+	text-align: center;
+	font-family: 'Berkshire Swash', cursive;
+}
+
+#friendsList {
+	float:left;
+	padding-left: 50px;
+	text-align: center;
+	line-height: 40px;
+	margin: 0 auto;
+}
+
+.fbProfileImage{
+	height: 150px;
+	width: 120px;
+	background-size: cover;
+	background-position: center center;
+	margin: 0 auto;
+}
+
+.user {
+	float:left;
+	height: 180px;
+	width: 150px;
+	border: 2px solid;
+	padding:10px;
+	margin: 10px;
+}
+
+#welcomeScreen {
+	/*background: rgba(0,255,255,0.5);*/
+	width: 960px;
+	height: 600px;
+	margin: auto;
+	background: url("welcomeScreen.jpg");
+	background-size: cover;
+}
+
+.butt {
+	color: #fff;
+	background: #003261;
+	/*padding: 10px;	*/
+	border-radius: 5px;
+	width:140px;
+	line-height: 1.5em;
+	display: inline-block;
+	cursor: pointer;
+	border: 1px solid #003261;
+	position: absolute !important;
+	top:400px;
+	left:850px;
+	z-index: 1000;
+	font-family: 'Open Sans';
+	font-weight: bold;
+}
+
+.butt:hover {
+	color: #fff;
+	background: #002061;
+	border: 1px solid #2284d1;
+	text-decoration: none;
+}
+
+.icon {
+	float:left;
+	margin: auto 0;
+	background: url("fb.png");
+	height: 45px;
+	width: 45px;
+	background-size: contain;
+}
+
+#login {
+	vertical-align: center;
+	line-height: 40px;
+	padding-left: 60px;
+}
+
+#displayPic {
+	height: 150px;
+	width: 150px;
+	background-size: cover;
+}
+
+.hidden {
+	display: none;
+}
+
+#panels {
+	width:100%;
+	height: 100%;
+}
+
+#panels #leftPanel {
+	float: left;
+	width: 20%;
+	height: 100%;
+	padding: 10px;
+}
+#panels #leftPanel .details {
+	overflow: auto;
+	max-height: 400px;
+}
+
+#panels #rightPanel {
+	float: left;
+	width: 76%;
+	height: 100%;
+	/*background: #000;*/
+
+}
+
+#leftPanel .head {
+	overflow: auto;
+	border-bottom: 1px solid black;
+	margin-left: 10px;
+	margin-top: 20px;
+	cursor: pointer;
+}
+
+.head .headTitle {
+	float:left;
+	width: 120px;
+	font-size: 20px;
+	font-family: 'Open Sans', sans-serif;
+}
+
+.head .arrow {
+	float: right;
+	width: 20px;
+	height: 20px;
+	background: url('dropDownArrow.png') no-repeat center;
+	-webkit-transition: all 0.5s ease;
+	   -moz-transition: all 0.5s ease;
+	    -ms-transition: all 0.5s ease;
+	     -o-transition: all 0.5s ease;
+	        transition: all 0.5s ease;
+}
+
+.rotateArrow {
+	-webkit-transform: rotate(-90deg);
+	   -moz-transform: rotate(-90deg);
+	    -ms-transform: rotate(-90deg);
+	     -o-transform: rotate(-90deg);
+	        transform: rotate(-90deg);
+}
+
+.details .friendDetail {
+	margin-left:10px;
+	padding: 5px;
+	font-size: 16px;
+	background: #fff;
+	border-bottom: 1px solid #abc;
+	height: 20px;
+}
+
+ .friendDetail:hover {
+	background: #b1d3f5;
+} 
+
+.friendDetail .friendName {
+	float: left;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 11px;
+	padding-left: 5px;
+	line-height: 23px;
+}
+.messageIcon {
+	background: url('message_white.png');
+	height: 18px;
+	width: 18px;
+	float: right;
+	background-size: contain;
+	cursor: pointer;
+}
+
+.linkIcon {
+	background: url('link_white.png');
+	height: 18px;
+	width: 18px;
+	float: right;
+	margin-right: 5px;
+	background-size: contain;
+	cursor: pointer;
+}
+
+.calenderIcon {
+	background: url('calender.png') no-repeat center;
+	height: 20px;
+	width: 20px;
+	float: left;
+	background-size: contain;
+	font-size: 10px;
+	font-family: 'Open Sans', sans-serif;
+	padding-left: 8px;
+	padding-top: 5px;
+	font-weight: bold;
+}
+
+#rightPanel #rightPanelHead {
+	width:95%;
+	height:40px;
+	background:#fff;
+	box-shadow: 2px 2px 2px  #394264;
+	margin-top: 10px;
+	float: right;
+	/*padding-right:5px;*/
+}
+
+#rightPanel #rightPanelHead #headLabel {
+	width:200px;
+	/*background:#fff;*/
+	margin-top: 10px;
+	margin-left: 10px;
+	font-weight: bold;
+	float: left;
+	font-size: 18px;
+	font-family: 'Open Sans', sans-serif;
+}
+
+#searchBar {
+	background: url('searchBar.png') no-repeat left;
+	background-size: contain;
+	border:none;
+	padding-left: 0;
+	border-bottom: 0;
+	width: 25px;
+	height: 25px;
+	float: right;
+	-moz-transition:all 0.5s ease;
+	-webkit-transition:all 0.5s ease;
+	-o-transition:all 0.5s ease;
+	-ms-transition:all 0.5s ease;
+	transition:all 0.5s ease;
+	margin-right: 10px;
+	margin-top:5px;
+}
+ 
+#searchBar:focus, #searchBar:hover{
+	width:200px; 
+	padding-left: 30px;
+	border-bottom: 1px solid black;
+}
+
+.ui-autocomplete {
+    max-height: 180px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12px;
+  }
+
+::-webkit-scrollbar { display: none; }
+
+  .ui-autocomplete a {
+  	background: none !important;
+    border: none !important;
+    height: 0 important;
+  }
+
+  .ui-autocomplete .autoCompleteDiv {
+  	overflow: hidden;
+  }
+
+  /* .ui-autocomplete li .autoCompleteDiv:hover, .ui-autocomplete li.active .autoCompleteDiv{
+    border: 1px solid blue !important;
+  } */
+
+.ui-menu {
+  	padding: 0 !important;
+  }
+
+ul {
+  	margin: 0 !important;
+  }
+
+.ui-menu-item{
+    	box-sizing: border-box;
+}
+
+.ui-state-focus{
+	box-shadow: inset 0px 0px 10px 0px rgba(30,30,200,0.8);
+}
+
+.ui-menu .ui-menu-item a.ui-state-focus, .ui-menu .ui-menu-item a.ui-state-active {
+	margin: 0 !important;
+}
+
+.ui-autocomplete .friendPic {
+	height:40px;
+	width:40px;
+	float:left;
+	background-size: cover;
+	background-position: center center;
+}
+
+.ui-autocomplete .friendDetails {
+	margin-top:4px;
+	width:130px;
+	float:left;
+    margin-left: 10px;
+
+}
+
+.ui-autocomplete .friendDetails .name {
+	height:18px;
+	font-family: 'Open Sans', sans-serif;
+    font-size: 12px;
+}
+
+.ui-autocomplete .friendDetails .birthday {
+	height:18px;
+	font-family: 'Open Sans', sans-serif;
+    font-size: 10px;
+}
+
+#rightPanel #rightPanelBody {
+	width:100%;
+	height: 480px;
+	float: right;
+	margin-top: 10px;
+	overflow: auto;
+	overflow-y:webkit-scrollbar;
+}
+
+#loading {
+	background: url('loading.gif') no-repeat center;
+	width: 100%;
+	height: 100%;
+}
+
+#recItems {
+	width:100%;
+	height: 100%;
+	overflow: auto;
+}
+
+#recItems .giftItems {
+	width:150px;
+	height:220px;
+	float: left;
+	background: #f8f8f8;
+	padding: 5px;
+	margin: 5px;
+	overflow: auto;
+}
+
+#recItems .giftItems:hover {
+	outline: solid #394264 2px;
+	cursor: pointer;
+}
+
+#recItems .giftItems .giftItemPic {
+	width: 100%;
+	height: 70%;
+	float: left;
+}
+
+a {
+	color: black;
+	text-decoration: none;
+}
+
+#recItems .giftItems .giftItemName {
+	width: 100%;
+	height: 15%;
+	float: left;
+	/*outline: solid black 1px;*/
+	overflow: hidden;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 12px;
+	color: black;
+	line-height: 30px;
+	/*line-height: 23px;*/
+}
+
+#recItems .giftItems .giftItemPrice {
+	width: 100%;
+	height: 15%;
+	float: left;
+	/*outline: solid black 1px;*/
+	overflow: hidden;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 12px;
+	color: black;
+	line-height: 30px;
+	/*line-height: 23px;*/
+}
